@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{%block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container-lg bg-light mt-5 py-2">
+    <div class="row">
+        <div class="col d-flex justify-content-center my-4">
+            <h1 class="display-3">Welcome</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center my-5">
+        <div class="col-lg-5" id="login-col">
+            <div class="card">
+                <div class="card-body" id="login-card">
+                    <h2 class="card-title d-flex justify-content-center">Login</h1>
+                    <p class="card-text">
+                        <form class="mb-3" action="{% url 'user:login' %}" method="post">
+                            {% csrf_token %}
+                            {{ login_form }}
+                            <div class="btn-group d-flex">
+                                <button type="submit" name="login" class="btn btn-primary" value="user">
+                                    Sign in
+                                </button>
+                                <button type="submit" name="login" class="btn btn-outline-secondary" value="guest" formnovalidate>
+                                    Sign in as a Guest
+                                </button>
+                            </div>
+                        </form>
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags and 'login' in message.tags %}
+                            <div role="alert" class="alert
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}alert-danger
+                            {% else %}alert-info{% endif %}">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5" id="register-col">
+            <div class="card">
+                <div class="card-body" id="register-card">
+                    <h2 class="card-title d-flex justify-content-center">Register</h1>
+                    <p class="card-text">
+                        <form class="mb-3" action="{% url 'user:register' %}" method="post">
+                            {% csrf_token %}
+                            {{ register_form }}
+                            <div class="btn-group d-flex">
+                                <button type="submit" class="btn btn-primary">
+                                    Register
+                                </button>
+                            </div>
+                        </form>
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags and 'register' in message.tags %}
+                            <div role="alert" class="alert
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}alert-danger
+                            {% else %}alert-info{% endif %}">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% for field in form %}
+<div class="form-floating mb-3">
+    <input class="form-control" id="{{ field.id_for_label }}"
+    name="{{ field.name }}" type="{{ field.field.widget.input_type }}"
+    {% if field.value %}value="{{ field.value }}"{% endif %}
+    {% if field.field.required %}required=""{% endif %}
+    placeholder="x">
+    <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+    {{ field.errors }}
+</div>
+{% endfor %}

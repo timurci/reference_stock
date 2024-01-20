@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  reference-db:
+    image: postgres
+    restart: always
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=ref_stock
+      - POSTGRES_USER=main
+      - POSTGRES_PASSWORD=super_secret_password
+
+  web:
+    build: src/web
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - type: bind
+        source: src/web/ref_stock
+        target: /code
+    ports:
+      - "3600:8000"
+    depends_on:
+      - reference-db
+    environment:
+      - POSTGRES_DB=ref_stock
+      - POSTGRES_USER=main
+      - POSTGRES_PASSWORD=super_secret_password
+
+volumes:
+  postgres:
