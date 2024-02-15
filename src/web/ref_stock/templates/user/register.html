@@ -1,0 +1,28 @@
+{% extends 'user/auth_body.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block formContent %}
+<div class="col-lg-5" id="register-col">
+    <div class="card shadow">
+        <div class="card-body text-center" id="register-card">
+            <h2 class="card-title">Register</h1>
+            <p class="card-text">
+                <form class="m-5" action="{% url 'user:register' %}" method="post">
+                    {% csrf_token %}
+                    {{ register_form }}
+                    <div class="btn-group d-flex pt-3">
+                        <button type="submit" class="btn btn-primary">
+                            Register
+                        </button>
+                    </div>
+                </form>
+                {% include 'messages.html' %}
+                <div>
+                    Already got an account? <a href="{% url 'user:login' %}" id="loginAnchor">Login</a>
+                </div>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

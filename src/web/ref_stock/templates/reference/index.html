@@ -3,6 +3,11 @@
 {%block title %}Main{% endblock %}
 
 {% block content %}
+
+{% load static %}
+
+<script src="{% static 'reference/tabSPA.js' %}" defer></script>
+
 <div class="container-lg">
     <nav class="navbar">
         <div class="container-fluid justify-content-center">
@@ -10,33 +15,20 @@
         </div>
 
         <div class="container-fluid">
-            {% if messages %}
-            {% for message in messages %}
-            {% if message.tags %}
-                <div  role="alert" class="alert alert-dismissible fade show pe-1 ps-3 py-2
-                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}alert-danger
-                {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}alert-success
-                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}alert-warning
-                {% else %}alert-info{% endif %}">
-                    {{ message }}
-                <button type="button" class="btn close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-            {% endif %}
-            {% endfor %}
-            {% endif %}
+            {% include 'messages_dismissible.html' %} 
         </div>
 
         <div class="container-fluid">
             <div class="nav nav-underline" id="nav-tab" role="tablist">
                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#new-entry-tab-pane"
-                aria-controls="new-entry-tab-pane" aria-selected="true" role="tab" id="new-entry-tab">
+                aria-controls="new-entry-tab-pane" aria-selected="true" role="tab"
+                value="{% url 'reference:new-entry' %}" id="new-entry-tab">
                     <i class="bi bi-plus-square"></i>
                     New Entry
                 </button>
                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#search-tab-pane"
-                aria-controls="search-tab-pane", aria-selected="false" role="tab" id="search-tab">
+                aria-controls="search-tab-pane", aria-selected="false" role="tab"
+                value="{% url 'reference:search' %}" id="search-tab">
                     <i class="bi bi-search"></i>
                     Search
                 </button>
@@ -56,8 +48,12 @@
 
 <div class="container-lg my-2">
     <div class="tab-content" id="mainTabContent">
-        <div class="tab-pane fade show active" id="new-entry-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">New entry stuff</div>
-        <div class="tab-pane fade" id="search-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">Search stuff</div>
+        <div class="tab-pane fade show active" id="new-entry-tab-pane" role="tabpanel" aria-labelledby="new-entry-tab" tabindex="0">
+            Empty Content 0
+        </div>
+        <div class="tab-pane fade" id="search-tab-pane" role="tabpanel" aria-labelledby="search-tab" tabindex="1">
+            Empty Content 1
+        </div>
       </div>
 </div>
 

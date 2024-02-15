@@ -5,3 +5,5 @@ def index(request):
         return HttpResponseRedirect(reverse("reference:index"))
     else:
         return HttpResponseRedirect(reverse("user:login"))
+
+

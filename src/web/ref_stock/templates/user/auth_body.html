@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<script defer src="{% static 'user/AuthSPA.js' %}"></script>
+
+<div class="container-lg mt-5 py-2">
+    <div class="row">
+        <div class="col d-flex justify-content-center my-4">
+            <h1 class="display-3">Welcome</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center my-5">
+        {% block formContent %}
+        Empty Content
+        {% endblock %}
+    </div>
+</div>
+
+{% endblock %}

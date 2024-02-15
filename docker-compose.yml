@@ -10,6 +10,11 @@ services:
       - POSTGRES_DB=ref_stock
       - POSTGRES_USER=main
       - POSTGRES_PASSWORD=super_secret_password
+    healthcheck:
+      test: "/usr/bin/pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB -h reference-db"
+      interval: 5s
+      timeout: 10s
+      retries: 5
 
   web:
     build: src/web
@@ -24,7 +29,9 @@ services:
     ports:
       - "3600:8000"
     depends_on:
-      - reference-db
+      reference-db:
+        condition: service_healthy
+        restart: true
     environment:
       - POSTGRES_DB=ref_stock
       - POSTGRES_USER=main
