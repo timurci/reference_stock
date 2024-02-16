@@ -1,4 +1,23 @@
-<input type="text" id="textInput" placeholder="Type something">
-<select id="dropdown">
-  <option value="">Select an option</option>
-</select>
+{% load static %}
+<div>
+  <link rel="stylesheet" href="{% static 'reference/customDropdown.css' %}">
+
+  <div class="ref-input-wrapper">
+        <input type="text" id="test01" class="ref-input" placeholder="Author Initials">
+        <ul class="ref-dropdown">
+          <li>Random Stuff <span class="text-muted">_&langle;id: 512983&rangle;</span></li>
+          <li>Lorem ipsum</li>
+          <li>Dolor sit amet</li>
+          <li>Tomato</li>
+          <li>Watermelon</li>
+          <li>Avocado</li>
+        </ul>
+  </div>
+
+<div class="ref-input-wrapper">
+  <input type="text" id="test01" class="ref-input" placeholder="Author Last Name">
+  <ul class="ref-dropdown">
+  </ul>
+</div>
+
+</div>

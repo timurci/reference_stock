@@ -1,0 +1,72 @@
+.ref-input {
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.ref-input:focus + .ref-dropdown {
+    visibility: visible;
+    animation-play-state: running;
+}
+
+.ref-dropdown {
+    visibility: hidden;
+    margin-top: 5px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    border-radius: 0px 0px 10px 10px;
+    border: 0.1rem solid;
+    max-height: 200px;
+    overflow: scroll;
+    animation: openHeight 0.8s;
+    animation-play-state: paused;
+    position: absolute;
+    width: inherit;
+    justify-content: left;
+}
+
+@keyframes openHeight {
+    from {
+        max-height: 0;
+        background-color: transparent;
+        color: transparent;
+        overflow: hidden;
+    }
+
+    to {overflow: auto;}
+}
+.ref-dropdown::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0px;
+    display: block;
+    overflow: auto;
+}
+
+.ref-dropdown::-webkit-scrollbar-thumb {
+    background-color: #0000002e;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.ref-dropdown li {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid;
+    border-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background-color: inherit;
+}
+
+.ref-dropdown li:hover {
+    background-color: #64646412;
+    border-color: inherit;
+}
+
+.ref-input-wrapper {
+    width: 15rem;
+    margin: 5px;
+    display: inline-block;
+}
